@@ -1,0 +1,13 @@
+self, owner, balance, history
+
+account1
+jorge
+lucas
+1700
+added 500, remainder: 500; withdrew 300, remainder: 200; added 1500, remainder: 1700
+
+account2
+jinho
+kim
+350
+added 500, remainder: 500; withdrew 300, remainder: 200; added 150, remainder: 350

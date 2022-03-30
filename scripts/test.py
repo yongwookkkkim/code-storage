@@ -1,3 +1,2 @@
-a=False
-while (a==True):
-    print("hello")
+a = input("asdf")
+b = a+1
