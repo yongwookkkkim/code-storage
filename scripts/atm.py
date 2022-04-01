@@ -1,9 +1,6 @@
+
+from pickle import FALSE
 import random
-
-power = True
-base = open('scripts/database.txt', 'r')
-
-database = []
 
 def createAccountNo():
     accountNo=0
@@ -12,17 +9,15 @@ def createAccountNo():
     return accountNo
 
 class account():
-    def __init__(self, firstname, lastname, balance, history, password):
+    def __init__(self, firstname, surname, balance, history, password, accountnoinput=1):
         self.firstname = firstname
-        self.lastname = lastname
+        self.surname = surname
         self.balance = balance
         self.history = history
         self.password=password
-        repeat=True
-        overlap=False
-        accountNo=0
-        while repeat:
-            if len(database)!=0:
+        if accountnoinput==1:
+            repeat=True
+            while repeat:
                 accountNo=createAccountNo()
                 overlap=False
                 for account in database:
@@ -30,10 +25,9 @@ class account():
                         overlap=True
                 if overlap==False:
                     self.accountNo=accountNo
-                    repeat=False       
-            else:
-                self.accountNo=11111111 
-                repeat=False
+                    repeat=False
+        else:
+            self.accountNo=accountnoinput
     
     def passwordcheck(self):
         correctPassword=False
@@ -46,7 +40,7 @@ class account():
                 print(f"Wrong password. You have {3-wrongcount} attempts remaining.\n")
                 wrongcount+=1
         return correctPassword
-            
+     
 def identification():
     accountNoInput = input("Please enter your account no: ")
     res=0
@@ -77,11 +71,12 @@ def createNewAccount():
             print("The passwords don't match.\n")   
     accountCreated=account(firstname, lastname, balance, history, password1)
     database.append(accountCreated)
+    appendDatabase(accountCreated)
     print(f"Your Account Number is {accountCreated.accountNo}")
     
 def checkBalance():
     accountAccess=identification()
-    print(database[accountAccess].balance)
+    print(f"Your balance is {database[accountAccess].balance}")
 
 def cashWithdrawal():
     accountAccess = identification()
@@ -89,10 +84,10 @@ def cashWithdrawal():
     withdrawalAmount = int(input("How much would you like to withdraw: "))
     if withdrawalAmount <= account.balance:
         account.balance -= withdrawalAmount
-        print(f"You withdrew {withdrawalAmount}, remainder: {account.balance}")
+        print(f"You withdrew {withdrawalAmount}, Balance: {account.balance}")
     else:
         print(f"That exceeds your balance. Your current balance is {account.balance}\n")
-    account.history.append("Withdrew: " + str(withdrawalAmount) + ", Balance: " + str(account.balance))
+    account.history.append("w"+str(withdrawalAmount))
 
 def addValue():
     accountAccess = identification()
@@ -100,17 +95,59 @@ def addValue():
     additionAmount = int(input("How much would you like to add: "))
     account.balance += additionAmount
     print(f"You added {additionAmount}, Balance: {account.balance}")
-    account.history.append("Added: " + str(additionAmount) + ", Balance: " + str(account.balance))
+    account.history.append("a"+str(additionAmount))
 
 def seeHistory():
     accountAccess = identification()
     account = database[accountAccess]
     print("-Your Account's History-")
     for item in account.history:
-        print(item + "\n")
+        if item.startswith("a"):
+            print(f"Added: "+item.replace('a',''))
+        elif item.startswith("w"):
+            print(f"Added: "+item.replace('w',''))
+
+def appendDatabase(accIn):
+    history=";".join([item for item in accIn.history])
+    baseAppend.write("\n"+ accIn.firstname)
+    baseAppend.write("\n"+ accIn.surname)
+    baseAppend.write("\n"+ str(accIn.balance))
+    baseAppend.write("\n"+ history)
+    baseAppend.write("\n"+ accIn.password)
+    baseAppend.write("\n"+ str(accIn.accountNo))
+
+power = True
+read = open('scripts/database.txt','r')
+baseAppend=open('scripts/database.txt', 'a')
+baseRead=read.read()
+database=[]
+baseReadLineSplit = baseRead.split("\n")
+j=0
+for i in range(len(baseReadLineSplit)):
+    if i%6==0:
+        firstnameRead=baseReadLineSplit[i]
+        j+=1
+    elif i%6==1:
+        surnameRead=baseReadLineSplit[i]
+        j+=1
+    elif i%6==2:
+        balanceRead=baseReadLineSplit[i]
+        j+=1
+    elif i%6==3:
+        historyRead=baseReadLineSplit[i].split(";")
+        j+=1
+    elif i%6==4:
+        passwordRead=baseReadLineSplit[i]
+        j+=1
+    elif i%6==5:
+        accountNoRead=baseReadLineSplit[i]
+        j+=1
+    if j==6:
+        database.append(account(firstnameRead,surnameRead,balanceRead,historyRead,passwordRead,accountNoRead))
+        j=0
 
 while(power):
-    service = input("\n<possible services>\ncreate new account (press 0)\ncheck balance (press 1)\ncash withdrawal (press 2)\nadd value (press 3)\nsee history (press 4)\nterminate service (press t)\n\nWhat service do you seek: ")
+    service = input("\n<possible services>\ncreate new account (press 0)\ncheck balance (press 1)\ncash withdrawal (press 2)\nadd value (press 3)\nsee history (press 4)\nterminate service (press t)\n\nWhich service do you seek: ")
     print("")
     if service=="0":
         createNewAccount()
