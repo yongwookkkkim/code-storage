@@ -1,5 +1,3 @@
-
-from pickle import FALSE
 import random
 
 def createAccountNo():
@@ -105,7 +103,7 @@ def seeHistory():
         if item.startswith("a"):
             print(f"Added: "+item.replace('a',''))
         elif item.startswith("w"):
-            print(f"Added: "+item.replace('w',''))
+            print(f"Withdrew: "+item.replace('w',''))
 
 def appendDatabase(accIn):
     history=";".join([item for item in accIn.history])
@@ -131,7 +129,7 @@ for i in range(len(baseReadLineSplit)):
         surnameRead=baseReadLineSplit[i]
         j+=1
     elif i%6==2:
-        balanceRead=baseReadLineSplit[i]
+        balanceRead=int(baseReadLineSplit[i])
         j+=1
     elif i%6==3:
         historyRead=baseReadLineSplit[i].split(";")
@@ -140,7 +138,7 @@ for i in range(len(baseReadLineSplit)):
         passwordRead=baseReadLineSplit[i]
         j+=1
     elif i%6==5:
-        accountNoRead=baseReadLineSplit[i]
+        accountNoRead=int(baseReadLineSplit[i])
         j+=1
     if j==6:
         database.append(account(firstnameRead,surnameRead,balanceRead,historyRead,passwordRead,accountNoRead))
