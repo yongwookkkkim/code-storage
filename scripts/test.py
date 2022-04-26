@@ -1,15 +1,18 @@
-import math
 import random
-import numpy as np
-import matplotlib.pyplot as plt
 
-def approxPi(repetition):
-    inCircle=0
-    for i in range(repetition):
-        x=random.random()*100.0
-        y=random.random()*100.0
-        if (x-50)**2 + (y-50)**2 <= 2500:
-            inCircle+=1.0
-    return inCircle/repetition*4.0
+class player():
+    def __init__(self, capital=5000, hand=[]):
+        self.capital=capital
+        self.hand=hand
 
-print(approxPi(5000000))
+class card():
+    def __init__(self, suit, number):
+        self.suit=suit
+        self.number=number
+
+deck = []
+suits=["spade","clover","heart","diamond"]
+numbers=['2','3','4','5','6','7','8','9','10','J','Q','K','A']
+for suit in suits:
+    for number in numbers:
+        deck.append(card(suit,number))

@@ -1,22 +1,27 @@
 #include <iostream>
 
-using namespace std;
+unsigned int n, k, midpos;
+unsigned int lbound=1, rbound=2147483647, res=0;
 
 int main(){
-    int num=13;
-    bool x=true;
-    int res=0;
-    for (int i=1;i<=num;i++){
-        if (num%i==0){
-            res++;
-        }
-    }
-    if (res==2){
-        x=true;
-    }
-    else{
-        x=false;
-    }
-    cout<<x;
-    return 0;
-} 
+	std::cin>>k>>n;
+	unsigned int wires[k];
+	for (int i=0; i<k; i++){
+		std::cin>>wires[i];
+	}
+	while (lbound<rbound){
+		res=0;
+		midpos=(lbound+rbound)/2;
+		for (int j=0; j<sizeof(wires)/sizeof(wires[0]); j++){
+			res+=wires[j]/midpos;
+		}
+		if (res>=n){
+			lbound=midpos;
+		}
+		else{
+			rbound=midpos;
+		}
+	}
+	std::cout<<rbound;
+	return 0;
+}
