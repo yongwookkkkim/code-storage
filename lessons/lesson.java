@@ -1,11 +1,10 @@
-import java.util.*;
-
-public class lesson
+class Lesson
 {
-
     public static void main(String args[]){
-        for (;;){
-            System.out.println("hi");
-        }     
+        Student ywkim;
+        ywkim=new Student();
+        ywkim.age=10;
+        ywkim.name="yw";
+        System.out.println(ywkim.name+" "+ywkim.age);
     }
 }
