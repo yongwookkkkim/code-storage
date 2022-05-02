@@ -2,7 +2,10 @@ from PIL import Image
 from itertools import count
 import matplotlib.pyplot as plt
 
-image = Image.open("reading_pixels_iamge.jpg", 'r')
+image = Image.open("reading_pixels_image.jpg", 'r')
 pix=image.load()
-print(pix[0,0])
-print(pix[600,450])
+width, height = image.size
+
+for i in range(width):
+    for j in range(height):
+        print(f'{pix[i,j]}\t{i} {j}')
