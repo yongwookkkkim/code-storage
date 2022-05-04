@@ -4,7 +4,8 @@ from tkinter import X
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
-
+import gc
+gc.enable()
 plt.style.use('fivethirtyeight')
 
 x_vals=[]
@@ -17,7 +18,7 @@ def animate(i):
     y_vals.append(random.randint(0,5))
     plt.plot(x_vals, y_vals)
 
-ani=FuncAnimation(plt.gcf(), animate, interval=500) #interval in milliseconds, gcf=get current function
+ani=FuncAnimation(plt.gcf(), animate) #interval in milliseconds, gcf=get current function
 
 plt.tight_layout()
 plt.show()
