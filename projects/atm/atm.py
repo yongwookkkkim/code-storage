@@ -144,6 +144,7 @@ for i in range(len(baseReadLineSplit)):
         database.append(account(firstnameRead,surnameRead,balanceRead,historyRead,passwordRead,accountNoRead))
         j=0
 
+#main loop
 while(power):
     service = input("\n<possible services>\ncreate new account (press 0)\ncheck balance (press 1)\ncash withdrawal (press 2)\nadd value (press 3)\nsee history (press 4)\nterminate service (press t)\n\nWhich service do you seek: ")
     print("")

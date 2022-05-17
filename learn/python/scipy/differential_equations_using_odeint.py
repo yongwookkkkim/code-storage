@@ -11,5 +11,5 @@ sol = odeint(dvdt, y0=v0, t=t, tfirst=True)
 print(sol.T) #traspose the solution
 print(sol.T[0]) #the first row(it's a multidimensional matrix)
 sol2 = solve_ivp(dvdt, t_span=(0,max(t)), y0=[v0], t_eval=t)
-plt.plot(t, sol2[0])
+plt.plot(t, sol2.y[0])
 plt.show()
