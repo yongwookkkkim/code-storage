@@ -23,4 +23,8 @@ lr.fit(x_train, y_train)
 
 #prediction
 X_new=np.array(11).reshape(1,1)
-print(lr.predict(X_new))
+#print(lr.predict(X_new))
+
+X_test=np.arange(11,16,1).reshape(-1,1) #-1 denotes an undetermined size
+y_pred=lr.predict(X_test)
+print(y_pred)

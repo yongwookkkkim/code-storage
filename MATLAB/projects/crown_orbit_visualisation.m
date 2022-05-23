@@ -21,8 +21,8 @@ IC=[phidot_0, phi_0]';
 
 %time interval
 t_start=0;
-dt=0.01;
-t_end=1.63;
+dt=0.1;
+t_end=50000;
 tVec=[t_start:dt:t_end]';
 
 %function handle
