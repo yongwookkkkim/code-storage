@@ -115,8 +115,8 @@ def appendDatabase(accIn):
     baseAppend.write("\n"+ str(accIn.accountNo))
 
 power = True
-read = open('scripts/database.txt','r')
-baseAppend=open('scripts/database.txt', 'a')
+read = open('projects/atm/database.txt','r')
+baseAppend=open('projects/atm/database.txt', 'a')
 baseRead=read.read()
 database=[]
 baseReadLineSplit = baseRead.split("\n")

@@ -1,5 +1,6 @@
 from scipy import stats
 import numpy as np
+import matplotlib.pyplot as plt
 
 lnx=[np.log(z) for z in x]
 res=stats.linregress(lnx,y)
