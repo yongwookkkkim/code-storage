@@ -39,4 +39,4 @@ while run:
 
 df.to_excel('./projects/atm/database.xlsx')
 '''
-print(df.loc[0,1])
+print(df)

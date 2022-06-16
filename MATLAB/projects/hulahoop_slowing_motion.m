@@ -30,7 +30,7 @@ odefun = @(t,z) [
 -psi.*(Rrot+Rh.*cos(z(3))-r).*z(4).*z(4).*cos((1-r./Rh).*psi).*sin(atan(2..*r.*psi.*tan(z(2))./Rh))./(r.*cos(z(2)));
 z(1);
 -4.*g.*mur.*cos(z(3)).*(Rh.*cos(z(3))-r).*(Rrot+Rh.*cos(z(3))-r).*z(4).*r./(Rh.*Rh.*(1+cos(z(3)).*cos(z(3))).*(g.*Rh.*sin(z(3))-(Rrot+Rh.*cos(z(3))-r).*Rh.*Rh.*z(4).*z(4)./r./r.*(Rrot+Rh.*cos(z(3))-r)./(cos(z(3)).*cos(z(3)))));
--0.05.*z(4).*z(4)
+-2.*mur.*cos(z(3)).*(Rh.*cos(z(3))-r).*z(4).*z(4)./(Rh.*(1+cos(z(3)).*cos(z(3))))
 ];
 %to make the graph more visible, the coefficient of dw/dt had been set to
 %0.05

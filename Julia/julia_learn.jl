@@ -1,3 +1,2 @@
-for item in 1:100
-    println("hi")
-end
+
+print(pi^(pi^pi))

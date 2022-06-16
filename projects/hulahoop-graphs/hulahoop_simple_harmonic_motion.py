@@ -10,18 +10,16 @@ g=9.81
 
 #variables
 Rrot=0
-omega=2*pi*25
-psi=pi/360
-mur=0.00005
-theta=pi/90
+omega=50*pi
+psi=0.02
+mur=0.02
+theta=17.5*pi/180
 r=0.0035
-Rh=0.01325
-
-omega=30
+Rh=0.012
 
 def odesys(t,S):
     phidot,phi=S
-    return [-r*psi*(Rrot+Rh*np.cos(theta)-r)*omega*omega*np.cos((1-r/Rh)*psi)*np.sin(np.arctan(2*r*psi*np.tan(phi)/Rh))/(Rh*Rh*np.cos(psi)), phidot]
+    return [-r*psi*np.cos(phi)*(Rrot+Rh*np.cos(theta)-r)*omega*omega*np.cos((1-r/Rh)*psi*np.cos(phi))*np.sin(np.arctan(2*r*psi*np.cos(phi)*np.tan(phi)/Rh))/(Rh*Rh*np.cos(psi*np.cos(phi))), phidot]
 
 #init conditions
 phidot0=0
@@ -35,7 +33,7 @@ phi_sol=sol.y[1]
 
 #curve_fitting
 f=lambda t,a,b: a*np.cos(b*t)
-popt, pcov = curve_fit(f,t,phi_sol,p0=(0.2,6.3/57))
+popt, pcov = curve_fit(f,t,phi_sol,p0=(0.015,4.75*2*pi/20))
 
 vert_vel=[Rh*omega*np.sin(phi_sol[i]) for i in range(len(t))]
 vert_dis=cumtrapz(vert_vel,t,initial=0)
@@ -50,4 +48,4 @@ plt.ylabel("phi [rad]")
 plt.grid()
 plt.tight_layout()
 plt.show()
-print(popt[1])
+print(2*pi/popt[1])
