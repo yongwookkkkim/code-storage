@@ -1,2 +1,9 @@
-import numpy as np
-print(10**17.82364533941695)
+var=10
+
+def func(x):
+    global var
+    print(var)
+    var=10
+    print(var)
+
+func(20)
