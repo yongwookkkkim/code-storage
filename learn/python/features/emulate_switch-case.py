@@ -18,7 +18,7 @@ func_dict={
 }
 
 cond='cond_a'
-func_dict.get(cond, func_default)()
+func_dict.get(cond, func_default)() #this will call func_default when the key is not found
 
 #a shorter way, but this is too slow
 #should store the dictionary in a variable

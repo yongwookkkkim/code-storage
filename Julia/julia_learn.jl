@@ -1,2 +1,0 @@
-
-print(pi^(pi^pi))

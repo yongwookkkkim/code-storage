@@ -1,9 +1,18 @@
-var=10
+class Class1:
+    def m(self):
+        print("class1")
 
-def func(x):
-    global var
-    print(var)
-    var=10
-    print(var)
+class Class2(Class1):
+    def m(self):
+        print("class2")
 
-func(20)
+class Class3(Class1):
+    def m(self):
+        print("class3")
+
+class Class4(Class3, Class2):
+    pass
+
+
+obj=Class4()
+obj.m()
