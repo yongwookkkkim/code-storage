@@ -1,3 +1,4 @@
+'''
 import simpy
 
 def main():
@@ -17,3 +18,8 @@ def traffic_light(env):
 
 if __name__=='__main__':
     main()
+'''
+
+b=[1,2,3,10,11,12]
+print(filter(lambda b: b>=10, b))
+print(sum(filter(lambda b: b>=10, b)))

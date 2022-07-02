@@ -1,42 +1,72 @@
 import pandas as pd
+import numpy as np
 import random
 
-data=pd.read_excel(r'./projects/atm/database.xlsx')
-df=pd.DataFrame(data)
+#read excel
+location='./projects/atm/database.xlsx'
+df=pd.read_excel(location)
 
-class account():
-    def __init__(self, fname, sname, pw, accno, bal=100, hist=[]):
-        self.fname=fname
-        self.sname=sname
-        self.bal=bal
-        self.hist=hist
-        self.pw=pw
-        #create random accno
+#rename columns and rows
+df.index=['accno', 'fname', 'sname', 'pw', 'bal', 'hist']
+df.columns=np.array(df.loc['accno'])
+print(df.dtypes  )
 
+#basic functions
+def login():
+    wrongcount=0
+    accno=int(input("Enter your account number: "))
+    while accno not in df.columns:
+        accno=int(input("Enter your account number: "))
+    pw=input("Enter your password: ")
+    if pw==df.loc['pw', accno]:
+        return True
+    else:
+        return False
 
-'''
 def createacc():
-    #basic info
     fname=input("Enter your first name: ")
     sname=input("Enter your surname: ")
-    #creating a valid password
-    corrpw=False
-    while not corrpw:
-        pw=input("Enter your password: ")
-        pwcheck=input("Enter your password again: ")
-        if pw==pwcheck:
-            corrpw=True
-        else:
-            print("Two passwords are different.")
-    #creating a unique accno
-    acno=df.loc[0,'last_no']
-    df.loc[0,'last_no']=acno+=1
-    newacc=account(fname, sname, pw, acno)
-    
-run=True
-while run:
-    print("hi")    
+    pw=input("Enter your password: ")
+    pwcheck=input("Enter your password again: ")
+    if pw!=pwcheck:
+        print("The passwords don't match.")
+        return False
+    else:
+        bal=1000
+        accno='0'
+        print(df.loc['accno'])
+        while int(accno) not in df.loc['accno']:
+            accno=''
+            for i in range(8):
+                accno+=str(random.randint(1,9))
+            df[accno]=[accno, fname, sname, pw, bal, 'none']
+        print("Account successfully created.")
 
-df.to_excel('./projects/atm/database.xlsx')
-'''
-print(df)
+def addval():
+    pass
+
+def withdraw():
+    pass
+
+def checkbal():
+    pass
+
+def checkhist():
+    pass
+
+def noservice():
+    print("We provide no such service.")
+
+def run():
+    on=True
+    while on:
+        login()
+        op=input("What service do you seek: ")
+        if op=='0':
+            createacc()
+        on=False
+        print(df)
+
+if __name__=='__main__':
+    run()
+    pass
