@@ -1,3 +1,5 @@
+import inspect
+
 class Class1:
     def m(self):
         print("class1")
@@ -16,3 +18,6 @@ class Class4(Class3, Class2):
 
 obj=Class4()
 obj.m()
+
+import numpy
+print(inspect.getsource(Class4.m))
