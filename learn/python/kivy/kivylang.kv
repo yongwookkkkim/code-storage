@@ -1,0 +1,32 @@
+<MyGrid>
+
+    #global variables
+    name: name
+    email: email
+
+    GridLayout:
+        cols:1
+        #root is the entire screen
+        size: root.width-100, root.height-100
+        pos:50,50
+
+        GridLayout:
+            cols:2
+            Label:
+                text: "Name: "
+            
+            TextInput:
+                id: name
+                multiline: False
+            
+            Label:
+                text: "Email: "
+            
+            TextInput:
+                id: email
+                multiline: False
+        
+        Button:
+            text: "Submit"
+            #without the root. part, it's going to look for a function names 'btn' in the entire file. root. limits the scope to the MyGrid class.
+            on_press:root.btn()
